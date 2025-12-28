@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="EPD-Solver: Parallel Diffusion Solver via Residual Dirichlet Policy Optimization.">
+  <meta name="keywords" content="Diffusion Models, ODE Solver, Reinforcement Learning, EPD-Solver">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EPD-Solver: Parallel Diffusion Solver via Residual Dirichlet Policy Optimization</title>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Parallel Diffusion Solver via <br> Residual Dirichlet Policy Optimization</h1>
+          
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="#">Ruoyu Wang</a><sup>1*</sup>,</span>
+            <span class="author-block">
+              <a href="https://ziyuli1121.github.io/">Ziyu Li</a><sup>1,2*</sup>,</span>
+            <span class="author-block">
+              <a href="https://beierzhu.github.io/">Beier Zhu</a><sup>3*</sup>,
+            </span>
+            <span class="author-block">
+              <a href="#">Liangyu Yuan</a><sup>1,4</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="#">Hanwang Zhang</a><sup>3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="#">Xun Yang</a><sup>5</sup>,
+            </span>
+            <span class="author-block">
+              <a href="#">Xiaojun Chang</a><sup>5</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://icoz69.github.io/">Chi Zhang</a><sup>1†</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>AGI lab, Westlake University,</span>
+            <span class="author-block"><sup>2</sup>University of Illinois Urbana-Champaign</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>3</sup>Nanyang Technological University,</span>
+            <span class="author-block"><sup>4</sup>Shanghai Jiao Tong University</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>5</sup>University of Science and Technology of China</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-light" style="pointer-events: none; color: #333;">
+                  <span>* Equal Contribution</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-light" style="pointer-events: none; color: #333;">
+                  <span>† Corresponding Author</span>
+                </a>
+              </span>
+            </div>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/BeierZhu/EPD"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/teaser.png" alt="EPD-Solver Teaser" style="width:100%; height:auto;">
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">EPD-Solver</span> leverages parallel gradient evaluations to reduce truncation errors, achieving high-fidelity generation at low latency.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Diffusion models (DMs) have achieved state-of-the-art generative performance but suffer from high sampling latency due to their sequential denoising nature. Existing solver-based acceleration methods often face significant image quality degradation under a low-latency budget, primarily due to accumulated truncation errors arising from the inability to capture high-curvature trajectory segments.
+          </p>
+          <p>
+            In this paper, we propose the <strong>Ensemble Parallel Direction solver (EPD-Solver)</strong>, a novel ODE solver that mitigates these errors by incorporating multiple parallel gradient evaluations in each step. Motivated by the geometric insight that sampling trajectories are largely confined to a low-dimensional manifold, EPD-Solver leverages the Mean Value Theorem for vector-valued functions to approximate the integral solution more accurately. Importantly, since the additional gradient computations are independent, they can be fully parallelized, preserving low-latency sampling nature.
+          </p>
+          <p>
+            We introduce a two-stage optimization framework. Initially, EPD-Solver optimizes a small set of learnable parameters via a distillation-based approach. We further propose a parameter-efficient Reinforcement Learning (RL) fine-tuning scheme that reformulates the solver as a stochastic Dirichlet policy. Unlike traditional methods that fine-tune the massive backbone, our RL approach operates strictly within the low-dimensional solver space, effectively mitigating reward hacking while enhancing performance in complex text-to-image (T2I) generation tasks.
+          </p>
+          <p>
+            Extensive experiments demonstrate the effectiveness of EPD-Solver. On validation benchmarks, at the same latency level of <strong>5</strong> NFE, the distilled EPD-Solver achieves state-of-the-art FID scores of <strong>4.47</strong> on CIFAR-10, <strong>7.97</strong> on FFHQ, <strong>8.17</strong> on ImageNet, and <strong>8.26</strong> on LSUN Bedroom. On T2I benchmarks, our RL-tuned EPD-Solver significantly improves human preference scores on both Stable Diffusion v1.5 and SD3-Medium. Notably, it outperforms the official 28-step baseline of SD3-Medium with only <strong>20</strong> steps.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method Overview</h2>
+        <div class="content has-text-justified">
+          <p>
+            Our method consists of two stages: (1) Distillation-Based Parameter Optimization, where we optimize learnable solver parameters to approximate high-precision teacher trajectories; and (2) Residual Dirichlet Policy Optimization, where we reformulate the solver as a stochastic policy and optimize it using RL to align with human preferences.
+          </p>
+          <img src="./static/images/pipeline.png" alt="Method Pipeline" style="width:100%; height:auto; margin-top: 20px;">
+        </div>
+      </div>
+    </div>
+    </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Visual Results</h2>
+        
+        <div class="content has-text-justified" style="margin-bottom: 40px;">
+          <h3 class="title is-4 has-text-centered">Results on Stable Diffusion v1.5</h3>
+          <img src="./static/images/sd15.png" alt="SD1.5 Results" style="width:100%; height:auto;">
+        </div>
+
+        <div class="content has-text-justified" style="margin-bottom: 40px;">
+          <h3 class="title is-4 has-text-centered">Results on SD3-Medium (512x512)</h3>
+          <img src="./static/images/sd3_512.png" alt="SD3 512 Results" style="width:100%; height:auto;">
+        </div>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4 has-text-centered">Results on SD3-Medium (1024x1024)</h3>
+          <img src="./static/images/sd3_1024.png" alt="SD3 1024 Results" style="width:100%; height:auto;">
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Quantitative Results</h2>
+        
+        <div class="content has-text-justified" style="margin-bottom: 30px;">
+          <img src="./static/images/Table_1.png" alt="Table 1" style="width:100%; height:auto;">
+        </div>
+
+        <div class="content has-text-justified" style="margin-bottom: 30px;">
+          <img src="./static/images/Table_2.png" alt="Table 2" style="width:100%; height:auto;">
+        </div>
+
+        <div class="content has-text-justified">
+          <img src="./static/images/Table_3.png" alt="Table 3" style="width:100%; height:auto;">
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{wang2025parallel,
+  title={Parallel Diffusion Solver via Residual Dirichlet Policy Optimization},
+  author={Wang, Ruoyu and Li, Ziyu and Zhu, Beier and Yuan, Liangyu and Zhang, Hanwang and Yang, Xun and Chang, Xiaojun and Zhang, Chi},
+  journal={arXiv preprint},
+  year={2025}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="#" disabled>
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/BeierZhu/EPD" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This website template was adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

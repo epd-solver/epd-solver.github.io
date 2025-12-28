@@ -1,3 +1,5 @@
 # Parallel Diffusion Solver via Residual Dirichlet Policy Optimization
 
-Refer to the codebase: https://github.com/BeierZhu/EPD
+Project page: https://epd-solver.github.io/
+
+Codebase: https://github.com/BeierZhu/EPD
